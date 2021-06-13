@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
   try {
     const decoded = await jwt.verify(
       token.replace('Bearer ', ''),
-      process.env.JWT_PRIVATE_KEY,
+      process.env.JWT_SECRET_KEY,
     );
     req.user = decoded;
     next();

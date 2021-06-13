@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 app.use('/api/auth', require('./route/auth'));
 app.use('/api', require('./route/signature'));
+app.use('/api/email', require('./route/email'));
 
 // route not found error handler
 // eslint-disable-next-line no-unused-vars
