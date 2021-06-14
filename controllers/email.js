@@ -19,9 +19,38 @@ async function getAllEmails(req, res, next) {
   }
 
   try {
+    // variables
+    const page = Number(req.query.page) || 1;
+    const limit = 10;
+    const skip = limit * (Math.abs(page - 1));
+
+    // find emails
     const email = await Email.find(filterSearch)
-      .populate('host_ids');
-    return res.status(200).json({ data: email, message: 'successfully retrieved emails', success: true });
+      .select('email').skip(skip).limit(limit)
+      .sort({ updatedAt: -1 });
+
+    // total documents
+    const total = await Email.countDocuments();
+    let from = skip + 1;
+    let to = Math.min(skip + limit, total);
+    const totalPage = Math.ceil(total / limit);
+
+    if (email.length <= 0) {
+      from = 0;
+      to = 0;
+    }
+
+    return res.status(200).json({
+      data: email,
+      page,
+      from,
+      limit,
+      to,
+      total,
+      totalPage,
+      message: 'successfully retrieved emails',
+      success: true,
+    });
   } catch (err) {
     return next(err);
   }

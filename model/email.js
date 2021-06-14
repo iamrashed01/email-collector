@@ -24,6 +24,6 @@ const Email = mongoose.model('Email', mongoose.Schema({
       ref: 'Host',
     },
   ],
-}, { timestamp: true }));
+}, { timestamps: true }));
 
 module.exports = Email;
