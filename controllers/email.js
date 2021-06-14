@@ -20,7 +20,7 @@ async function getAllEmails(req, res, next) {
 
   try {
     const email = await Email.find(filterSearch)
-      .populate('host_id');
+      .populate('host_ids');
     return res.status(200).json({ data: email, message: 'successfully retrieved emails', success: true });
   } catch (err) {
     return next(err);

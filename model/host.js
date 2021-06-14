@@ -6,6 +6,7 @@ const Host = mongoose.model('Host', new mongoose.Schema({
     required: true,
     unique: true,
   },
+  geo: Object,
   visit_count: {
     type: Number,
     default: 1,

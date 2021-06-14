@@ -18,10 +18,12 @@ const Email = mongoose.model('Email', mongoose.Schema({
   twitter_url: String,
   linkedin_url: String,
   instagram_url: String,
-  host_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Host',
-  },
+  host_ids: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Host',
+    },
+  ],
 }, { timestamp: true }));
 
 module.exports = Email;

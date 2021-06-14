@@ -1,17 +1,25 @@
 /* eslint-disable no-underscore-dangle */
+const geoip = require('geoip-lite');
 const Host = require('../model/host');
 const Email = require('../model/email');
 
 async function createSignature(req, res, next) {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
 
+  const geo = geoip.lookup(ip);
+
   let host = await Host.findOneAndUpdate({ ip }, { $inc: { visit_count: 1 } }, { new: true });
   if (!host) {
     host = await Host({
       ip,
+      geo,
     });
 
-    await host.save();
+    try {
+      await host.save();
+    } catch (err) {
+      return next(err);
+    }
   }
 
   let email = await Email.findOne({ email: req.body.email });
@@ -30,7 +38,7 @@ async function createSignature(req, res, next) {
       twitter_url: req.body.twitter_url,
       linkedin_url: req.body.linkedin_url,
       instagram_url: req.body.instagram_url,
-      host_id: host._id,
+      host_ids: host._id,
     });
   } else {
     email.first_name = req.body.first_name;
@@ -45,6 +53,10 @@ async function createSignature(req, res, next) {
     email.twitter_url = req.body.twitter_url;
     email.linkedin_url = req.body.linkedin_url;
     email.instagram_url = req.body.instagram_url;
+
+    if (!email.host_ids.includes(host._id)) {
+      email.host_ids.push(host._id);
+    }
   }
 
   try {
