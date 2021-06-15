@@ -22,7 +22,6 @@ router.delete('/:id', auth, admin, deleteEmail);
  * @params /api/email/export-all
  * @method GET
  */
-// router.get('/export-all', auth, admin, exportAllEmails);
-router.get('/export-all', exportAllEmails);
+router.get('/export-all', auth, admin, exportAllEmails);
 
 module.exports = router;

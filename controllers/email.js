@@ -103,6 +103,8 @@ async function exportAllEmails(req, res, next) {
   try {
     const parser = new Parser(opts);
     const csv = parser.parse(email);
+
+    res.header('Content-Type', 'text/csv');
     res.attachment('signatures.csv');
     return res.status(200).send(csv);
   } catch (err) {
