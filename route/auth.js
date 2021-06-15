@@ -18,7 +18,7 @@ const {
  * @method GET
  */
 
-router.get(
+router.post(
   '/login',
   doLoginValidators,
   doLoginValidatorHandler,

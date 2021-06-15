@@ -4,7 +4,7 @@ const doLoginValidators = [
   check('email')
     .isEmail()
     .withMessage('email is required'),
-  check('password').isLength({ min: 6, max: 20 }).withMessage('Password is required'),
+  check('password').isLength({ min: 6, max: 20 }).withMessage('password length must be between 6-20 and characters long'),
 ];
 
 const doLoginValidatorHandler = function (req, res, next) {
