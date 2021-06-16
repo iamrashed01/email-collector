@@ -26,7 +26,7 @@ userSchema.methods.generateAuthToken = function () {
     // eslint-disable-next-line no-underscore-dangle
     _id: this._id,
     role: this.role,
-  }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+  }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
   return token;
 };
 
