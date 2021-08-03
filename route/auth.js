@@ -7,10 +7,10 @@ const {
   doLoginValidators,
   doLoginValidatorHandler,
 } = require('../middleware/loginValidators');
-// const {
-//   doRegisterValidators,
-//   doRegisterValidatorHandler,
-// } = require('../middleware/registerValidators');
+const {
+  doRegisterValidators,
+  doRegisterValidatorHandler,
+} = require('../middleware/registerValidators');
 
 /**
  * @params /api/auth/login
@@ -31,11 +31,11 @@ router.post(
  * @method POST
  */
 
-// router.post(
-//   '/register',
-//   doRegisterValidators,
-//   doRegisterValidatorHandler,
-//   registerController,
-// );
+router.post(
+  '/register',
+  doRegisterValidators,
+  doRegisterValidatorHandler,
+  registerController,
+);
 
 module.exports = router;
