@@ -23,11 +23,12 @@ app.use('/api/auth', require('./route/auth'));
 app.use('/api', require('./route/signature'));
 app.use('/api/email', require('./route/email'));
 app.use('/api', require('./route/user'));
+app.use('/api/settings', require('./route/settings'));
 
 // route not found error handler
 // eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => {
-  res.json({ message: 'Route not found', success: false });
+  res.status(404).json({ message: 'Route not found', success: false });
 });
 
 // error handler
