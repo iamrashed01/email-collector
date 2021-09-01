@@ -16,6 +16,7 @@ async function updateSettingsController(req, res, next) {
     settings.mobile_phone = req.body.mobile_phone;
     settings.email = req.body.email;
     settings.address = req.body.address;
+    settings.description = req.body.description;
     settings.website = req.body.website;
     settings.facebook_url = req.body.facebook_url;
     settings.twitter_url = req.body.twitter_url;
@@ -37,6 +38,7 @@ async function updateSettingsController(req, res, next) {
       mobile_phone: req.body.mobile_phone,
       email: req.body.email,
       address: req.body.address,
+      description: req.body.address,
       website: req.body.website,
       facebook_url: req.body.facebook_url,
       twitter_url: req.body.twitter_url,
