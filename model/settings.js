@@ -13,6 +13,7 @@ const Settings = mongoose.model('Settings', mongoose.Schema({
   mobile_phone: { type: String },
   email: { type: String },
   address: { type: String },
+  description: { type: String },
   website: { type: String },
   facebook_url: { type: String },
   twitter_url: { type: String },

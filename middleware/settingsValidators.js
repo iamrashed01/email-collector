@@ -39,6 +39,11 @@ const doSettingsValidators = [
     .withMessage('address must be string')
     .isLength({ max: 255 })
     .withMessage('address length must be smaller than 255 and characters'),
+  check('description')
+    .isString()
+    .withMessage('description must be string')
+    .isLength({ max: 1024 })
+    .withMessage('description length must be smaller than 1024 and characters'),
   check('website')
     .isString()
     .withMessage('website must be string'),
