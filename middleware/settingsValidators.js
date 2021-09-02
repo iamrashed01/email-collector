@@ -65,6 +65,9 @@ const doSettingsValidators = [
   check('cta_url')
     .isString()
     .withMessage('cta url must be string'),
+  check('cta_prefix')
+    .isString()
+    .withMessage('cta prefix must be string'),
 ];
 
 const doSettingsValidatorHandler = function (req, res, next) {

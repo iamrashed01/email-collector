@@ -24,6 +24,7 @@ async function updateSettingsController(req, res, next) {
     settings.instagram_url = req.body.instagram_url;
     settings.cta_copy = req.body.cta_copy;
     settings.cta_url = req.body.cta_url;
+    settings.cta_prefix = req.body.cta_prefix;
   } else {
     settings = await Settings({
       profile_picture: req.body.profile_picture,
@@ -46,6 +47,7 @@ async function updateSettingsController(req, res, next) {
       instagram_url: req.body.instagram_url,
       cta_copy: req.body.cta_copy,
       cta_url: req.body.cta_url,
+      cta_prefix: req.body.cta_prefix,
     });
   }
 

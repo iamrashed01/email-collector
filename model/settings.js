@@ -21,6 +21,7 @@ const Settings = mongoose.model('Settings', mongoose.Schema({
   instagram_url: { type: String },
   cta_copy: { type: String },
   cta_url: { type: String },
+  cta_prefix: { type: String },
 }));
 
 module.exports = Settings;
