@@ -4,8 +4,12 @@ async function updateSettingsController(req, res, next) {
   let settings = await Settings.findOne();
 
   if (settings) {
-    settings.profile_picture = req.body.profile_picture;
-    settings.company_logo = req.body.company_logo;
+    if (req.files[0] && req.files[0].fieldname === 'profile_picture_file') {
+      settings.profile_picture = req.files[0].filename;
+    }
+    if (req.files[1] && req.files[1].fieldname === 'company_logo_file') {
+      settings.company_logo = req.files[1].filename;
+    }
     settings.company_url = req.body.company_url;
     settings.banner = req.body.banner;
     settings.first_name = req.body.first_name;
@@ -27,8 +31,8 @@ async function updateSettingsController(req, res, next) {
     settings.cta_prefix = req.body.cta_prefix;
   } else {
     settings = await Settings({
-      profile_picture: req.body.profile_picture,
-      company_logo: req.body.company_logo,
+      profile_picture: req.files[0] && req.files[0].fieldname === 'profile_picture_file' ? req.files[0].filename : '',
+      company_logo: req.files[1] && req.files[1].fieldname === 'company_logo_file' ? req.files[1].filename : '',
       company_url: req.body.company_url,
       banner: req.body.banner,
       first_name: req.body.first_name,

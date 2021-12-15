@@ -17,6 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads/'));
 
 // routes
 app.use('/api/auth', require('./route/auth'));
