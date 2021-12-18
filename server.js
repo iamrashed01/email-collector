@@ -26,6 +26,7 @@ app.use('/api/email', require('./route/email'));
 app.use('/api', require('./route/user'));
 app.use('/api/settings', require('./route/settings'));
 app.use('/api/status', require('./route/status'));
+app.use('/api/postimage', require('./route/images'));
 
 // route not found error handler
 // eslint-disable-next-line no-unused-vars
