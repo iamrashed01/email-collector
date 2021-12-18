@@ -53,9 +53,6 @@ const doSettingsValidators = [
   check('instagram_url')
     .isString()
     .withMessage('instagram url must be string'),
-  check('cta_copy')
-    .isString()
-    .withMessage('cta copy must be string'),
   check('cta_url')
     .isString()
     .withMessage('cta url must be string'),

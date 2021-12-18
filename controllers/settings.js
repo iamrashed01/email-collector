@@ -10,6 +10,9 @@ async function updateSettingsController(req, res, next) {
     if (req.files[1] && req.files[1].fieldname === 'company_logo_file') {
       settings.company_logo = req.files[1].filename;
     }
+    if (req.files[2] && req.files[2].fieldname === 'cta_copy_file') {
+      settings.cta_copy = req.files[2].filename;
+    }
     settings.company_url = req.body.company_url;
     settings.banner = req.body.banner;
     settings.first_name = req.body.first_name;
@@ -26,13 +29,13 @@ async function updateSettingsController(req, res, next) {
     settings.twitter_url = req.body.twitter_url;
     settings.linkedin_url = req.body.linkedin_url;
     settings.instagram_url = req.body.instagram_url;
-    settings.cta_copy = req.body.cta_copy;
     settings.cta_url = req.body.cta_url;
     settings.cta_prefix = req.body.cta_prefix;
   } else {
     settings = await Settings({
       profile_picture: req.files[0] && req.files[0].fieldname === 'profile_picture_file' ? req.files[0].filename : '',
       company_logo: req.files[1] && req.files[1].fieldname === 'company_logo_file' ? req.files[1].filename : '',
+      cta_copy: req.files[2] && req.files[2].fieldname === 'cta_copy_file' ? req.files[2].filename : '',
       company_url: req.body.company_url,
       banner: req.body.banner,
       first_name: req.body.first_name,
@@ -49,7 +52,6 @@ async function updateSettingsController(req, res, next) {
       twitter_url: req.body.twitter_url,
       linkedin_url: req.body.linkedin_url,
       instagram_url: req.body.instagram_url,
-      cta_copy: req.body.cta_copy,
       cta_url: req.body.cta_url,
       cta_prefix: req.body.cta_prefix,
     });
