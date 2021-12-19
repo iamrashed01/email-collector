@@ -1,12 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
 const doSettingsValidators = [
-  check('profile_picture')
-    .isString()
-    .withMessage('profile picture must be string'),
-  check('company_logo')
-    .isString()
-    .withMessage('company logo must be string'),
   check('company_url')
     .isString()
     .withMessage('company url must be string'),
@@ -59,9 +53,6 @@ const doSettingsValidators = [
   check('instagram_url')
     .isString()
     .withMessage('instagram url must be string'),
-  check('cta_copy')
-    .isString()
-    .withMessage('cta copy must be string'),
   check('cta_url')
     .isString()
     .withMessage('cta url must be string'),

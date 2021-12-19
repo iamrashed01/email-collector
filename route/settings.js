@@ -1,6 +1,7 @@
 const route = require('express').Router();
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
+const upload = require('../utils/multer');
 const { updateSettingsController, getSettingsController } = require('../controllers/settings');
 const { doSettingsValidators, doSettingsValidatorHandler } = require('../middleware/settingsValidators');
 
@@ -16,6 +17,6 @@ route.get('/', getSettingsController);
  * @method POST
  */
 
-route.post('/', [auth, admin], doSettingsValidators, doSettingsValidatorHandler, updateSettingsController);
+route.post('/', [auth, admin], upload.any(), doSettingsValidators, doSettingsValidatorHandler, updateSettingsController);
 
 module.exports = route;
