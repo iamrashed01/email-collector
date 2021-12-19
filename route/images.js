@@ -8,7 +8,7 @@ const upload = require('../utils/multerForCdn');
 
 router.post('/', upload.any(), (req, res) => {
   if (req.files.length > 0) {
-    res.status(200).json({
+    return res.status(200).json({
       cdn: req.files[0].filename,
     });
   }

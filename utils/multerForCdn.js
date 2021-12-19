@@ -1,5 +1,8 @@
 const multer = require('multer');
 const path = require('path');
+const glob = require('glob');
+const { v4: uuidv4 } = require('uuid');
+const { unlinkSync } = require('fs');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -12,7 +15,29 @@ const storage = multer.diskStorage({
     if (ipNum) {
       ipNum = ipNum.replace(/[^0-9.]/g, '');
     }
-    cb(null, `${ipNum}${file.fieldname}${fileExt}`);
+
+    const deleteOldAssets = new Promise((resolve) => {
+      // find old files
+      glob(`**/ipn=${ipNum}${file.fieldname}-*`, null, async (er, files) => {
+      // eslint-disable-next-line
+      for await (const file of files) {
+          // remove file
+          unlinkSync(file, (err) => {
+          // eslint-disable-next-line no-console
+            if (err) console.log(err);
+            // eslint-disable-next-line no-console
+            console.log('file deleted successfully', file);
+          });
+        }
+        resolve('deleted');
+      });
+    });
+
+    deleteOldAssets
+      .then(() => {
+        const uid = uuidv4();
+        cb(null, `ipn=${ipNum}${file.fieldname}-${uid}${fileExt}`);
+      });
   },
 });
 
